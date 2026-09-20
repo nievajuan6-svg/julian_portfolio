@@ -2,6 +2,8 @@
 
 Sitio web de portfolio de **Julián Piaggio**, ilustrador digital (personajes, concept art e ilustración editorial). Pensado para conseguir encargos y empleo en estudios y agencias: oscuro, minimalista, con el dibujo como protagonista, y muy rápido.
 
+[![Vista previa del portfolio](docs/preview.jpg)](https://nievajuan6-svg.github.io/julian_portfolio/)
+
 🔗 **Web:** https://nievajuan6-svg.github.io/julian_portfolio/
 
 ## Qué incluye
