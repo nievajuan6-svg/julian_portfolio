@@ -1,0 +1,4 @@
+RETRATO (seccion Sobre mi)
+==========================
+Pone UNA foto tuya (jpg/png), ideal cuadrada o vertical, con la cara hacia el centro.
+Se muestra difuminada detras del titulo. Borra "retrato-ejemplo.jpg" (es un avatar ficticio).

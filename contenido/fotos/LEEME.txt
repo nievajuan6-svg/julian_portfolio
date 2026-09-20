@@ -1,0 +1,4 @@
+FOTOS DEL CARRUSEL (seccion Contacto)
+=====================================
+Pone aca fotos (jpg/png). Se muestran chicas, todas del mismo tamano, en un rollo que se mueve solo.
+Se ordenan por nombre de archivo (01.jpg, 02.jpg...). Las que empiezan con "ejemplo" son de muestra: borralas.

@@ -17,6 +17,8 @@ export type Proceso = { slug: string; titulo: string; ejemplo: boolean; etapas: 
 export type Categoria = { slug: string; label: string; count: number };
 export type Portfolio = {
   hero: Imagen | null;
+  retrato: Imagen | null;
+  fotos: Imagen[];
   obras: Obra[];
   categorias: Categoria[];
   proceso: Proceso[];

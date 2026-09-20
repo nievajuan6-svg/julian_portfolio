@@ -8,12 +8,16 @@ const RAIZ = process.cwd();
 const DIR_OBRAS = path.join(RAIZ, "contenido", "obras");
 const DIR_HERO = path.join(RAIZ, "contenido", "hero");
 const DIR_PROCESO = path.join(RAIZ, "contenido", "proceso");
+const DIR_RETRATO = path.join(RAIZ, "contenido", "retrato");
+const DIR_FOTOS = path.join(RAIZ, "contenido", "fotos");
 const PUB = path.join(RAIZ, "public");
 const SALIDA_JSON = path.join(RAIZ, "data", "portfolio.generated.json");
 const CACHE_FILE = path.join(RAIZ, ".obras-cache.json");
 const CATEGORIAS_FILE = path.join(RAIZ, "contenido", "categorias.json");
 
 const ANCHOS = [480, 960, 1440, 2200];
+const ANCHOS_RETRATO = [480, 960, 1440]; // va difuminado de fondo: no necesita más
+const ANCHOS_FOTO = [160, 320]; // fotos chicas del carrusel de contacto
 const EXT_OK = new Set([".png", ".jpg", ".jpeg", ".webp", ".tif", ".tiff", ".avif"]);
 const VERSION_CACHE = "v2"; // subir este valor fuerza a reprocesar todo
 const FONDO = "#0A0C10";
@@ -91,10 +95,10 @@ function parsearNombre(archivo, carpeta) {
 }
 
 // ---------- procesado de imágenes ----------
-async function procesarImagen(origen, dirRel, cache, nuevaCache) {
+async function procesarImagen(origen, dirRel, cache, nuevaCache, anchosBase = ANCHOS) {
   const st = await fs.stat(origen);
   const clave = path.relative(RAIZ, origen).replace(/\\/g, "/");
-  const firma = `${VERSION_CACHE}-${st.mtimeMs}-${st.size}-${dirRel}`;
+  const firma = `${VERSION_CACHE}-${st.mtimeMs}-${st.size}-${dirRel}${anchosBase === ANCHOS ? "" : "-" + anchosBase.join(",")}`;
   const previo = cache[clave];
   const dirAbs = path.join(PUB, dirRel);
 
@@ -114,8 +118,8 @@ async function procesarImagen(origen, dirRel, cache, nuevaCache) {
   if (!w || !h) throw new Error("no se pudo leer el tamaño de la imagen");
   if (meta.orientation && meta.orientation >= 5) [w, h] = [h, w];
 
-  const maxAncho = ANCHOS[ANCHOS.length - 1];
-  const anchos = [...new Set([...ANCHOS.filter((a) => a < w), ...(w <= maxAncho ? [w] : [])])].sort((a, b) => a - b);
+  const maxAncho = anchosBase[anchosBase.length - 1];
+  const anchos = [...new Set([...anchosBase.filter((a) => a < w), ...(w <= maxAncho ? [w] : [])])].sort((a, b) => a - b);
   await fs.rm(dirAbs, { recursive: true, force: true });
   await fs.mkdir(dirAbs, { recursive: true });
 
@@ -219,6 +223,36 @@ if (heroSrc) {
   }
 }
 
+// --- retrato (foto difuminada detrás de "Sobre mí")
+let retrato = null;
+const retratoSrc = await primeraImagen(DIR_RETRATO);
+if (retratoSrc) {
+  try {
+    const r = await procesarImagen(retratoSrc, "retrato/principal", cache, nuevaCache, ANCHOS_RETRATO);
+    cuenta(r);
+    const { reutilizada, ...d } = r;
+    retrato = d;
+  } catch (e) {
+    error(`retrato/${path.basename(retratoSrc)}
+     → No se pudo procesar (${e.message}).`);
+  }
+}
+
+// --- fotos del carrusel de contacto (orden alfabético del nombre de archivo)
+const fotos = [];
+const archivosFotos = (await listar(DIR_FOTOS)).filter(esImagen).sort((a, b) => a.name.localeCompare(b.name, "es", { numeric: true }));
+for (const [i, a] of archivosFotos.entries()) {
+  try {
+    const r = await procesarImagen(path.join(DIR_FOTOS, a.name), `fotos/${i + 1}`, cache, nuevaCache, ANCHOS_FOTO);
+    cuenta(r);
+    const { reutilizada, ...d } = r;
+    fotos.push(d);
+  } catch (e) {
+    error(`fotos/${a.name}
+     → No se pudo procesar la imagen (${e.message}). ¿Está dañada?`);
+  }
+}
+
 // --- proceso
 const ETAPAS = {
   boceto: "Boceto / Thumbnails",
@@ -280,7 +314,9 @@ for (const carpeta of await listar(DIR_PROCESO)) {
 // --- limpieza de derivados de imágenes que ya no existen
 await limpiarHuerfanos("obras", new Set(obras.map((o) => o.dir)));
 await limpiarHuerfanos("proceso", new Set(proceso.map((p) => `proceso/${p.slug}`)));
+await limpiarHuerfanos("fotos", new Set(fotos.map((f) => f.dir)));
 if (!hero) await fs.rm(path.join(PUB, "hero"), { recursive: true, force: true });
+if (!retrato) await fs.rm(path.join(PUB, "retrato"), { recursive: true, force: true });
 
 // --- imagen para redes (Open Graph)
 try {
@@ -302,14 +338,14 @@ const cv = await existe(path.join(PUB, "cv", "julian-piaggio-cv.pdf"));
 
 await fs.writeFile(
   SALIDA_JSON,
-  JSON.stringify({ generado: new Date().toISOString(), anchos: ANCHOS, hero, obras, categorias, proceso, cv }, null, 1)
+  JSON.stringify({ generado: new Date().toISOString(), anchos: ANCHOS, hero, retrato, fotos, obras, categorias, proceso, cv }, null, 1)
 );
 await fs.writeFile(CACHE_FILE, JSON.stringify(nuevaCache));
 
 // ---------- resumen ----------
 console.log(c.neg("\n🎨  Portfolio · procesado de imágenes"));
 console.log(
-  `   ${c.verde(obras.length + " obras")} en ${categorias.length} categorías · ${proceso.length} procesos · hero: ${hero ? "sí" : "no"} · CV: ${cv ? "sí" : "no"}`
+  `   ${c.verde(obras.length + " obras")} en ${categorias.length} categorías · ${proceso.length} procesos · hero: ${hero ? "sí" : "no"} · retrato: ${retrato ? "sí" : "no"} · ${fotos.length} fotos · CV: ${cv ? "sí" : "no"}`
 );
 console.log(c.gris(`   ${nuevas} imágenes procesadas, ${reutil} reutilizadas (caché) · ${((Date.now() - t0) / 1000).toFixed(1)}s`));
 for (const cat of categorias) console.log(c.gris(`     · ${cat.label}: ${cat.count}`));

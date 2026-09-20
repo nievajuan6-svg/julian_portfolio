@@ -10,9 +10,8 @@ Thumbs.db
 /public/obras
 /public/proceso
 /public/hero
+/public/retrato
+/public/fotos
 /public/og.jpg
 /data/portfolio.generated.json
 /.obras-cache.json
-
-.claude/settings.local.json
-.claude/

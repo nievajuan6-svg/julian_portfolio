@@ -1,11 +1,23 @@
 import { sitio } from "@/contenido/sitio";
-import { asset } from "@/lib/obras";
+import { asset, portfolio } from "@/lib/obras";
+import { lqipFondo, PictureFill } from "./Picture";
 
 export function SobreMi({ cv }: { cv: boolean }) {
+  const { retrato } = portfolio;
   return (
-    <section id="sobre-mi" className="seccion">
+    <section id="sobre-mi" className="seccion relative isolate overflow-hidden">
       <div className="contenedor grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
-        <div className="lg:sticky lg:top-28 lg:self-start">
+        <div className="relative lg:sticky lg:top-28 lg:self-start">
+          {retrato && (
+            // Foto difuminada detrás del título: se desvanece hacia los bordes
+            <div
+              className="pointer-events-none absolute -left-[12%] -top-24 -z-10 aspect-square w-[min(120%,34rem)] bg-cover opacity-40 [mask-image:radial-gradient(closest-side,#000_25%,transparent_100%)]"
+              style={lqipFondo(retrato)}
+              aria-hidden
+            >
+              <PictureFill img={retrato} alt="" sizes="(min-width: 1024px) 34rem, 100vw" />
+            </div>
+          )}
           <h2 className="titulo-seccion revela">Sobre mí</h2>
           <div className="revela mt-8 space-y-4 leading-relaxed text-muted">
             {sitio.sobreMi.map((p, i) => (

@@ -1,8 +1,19 @@
 import { sitio } from "@/contenido/sitio";
-import { CopiarEmail, FormularioContacto } from "./ContactoAcciones";
+import { portfolio } from "@/lib/obras";
+import { FormularioContacto } from "./ContactoAcciones";
+import { Rollo } from "./Rollo";
 
 export function Contacto() {
   const redes = sitio.redes.filter((r) => r.url);
+  const { fotos } = portfolio;
+  // mailto abre el programa de correo predeterminado (o la app del celular). Gmail y Outlook web: para quien no tiene uno configurado.
+  const asunto = encodeURIComponent("Consulta desde tu portfolio");
+  const cuerpo = encodeURIComponent("Hola Julián,\n\nTe escribo por…\n");
+  const para = encodeURIComponent(sitio.email);
+  const mailto = `mailto:${sitio.email}?subject=${asunto}&body=${cuerpo}`;
+  const whatsapp = `https://wa.me/${sitio.whatsapp}?text=${encodeURIComponent("Hola Julián, te escribo desde tu portfolio.")}`;
+  const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${para}&su=${asunto}&body=${cuerpo}`;
+  const outlook = `https://outlook.live.com/mail/0/deeplink/compose?to=${para}&subject=${asunto}&body=${cuerpo}`;
   return (
     <section id="contacto" className="seccion relative isolate overflow-hidden border-t border-border/60">
       <div
@@ -11,6 +22,7 @@ export function Contacto() {
         aria-hidden
       />
       <div className="contenedor">
+        <div className={fotos.length ? "grid items-center gap-12 lg:grid-cols-[1fr_auto] lg:gap-16" : ""}>
         <div className="revela max-w-4xl">
           <h2 className="titulo-seccion">Contacto</h2>
           {sitio.disponible && (
@@ -20,13 +32,20 @@ export function Contacto() {
             </p>
           )}
           <a
-            href={`mailto:${sitio.email}?subject=${encodeURIComponent("Consulta desde tu portfolio")}`}
+            href={mailto}
             className="mt-8 block break-all font-display text-[clamp(1.25rem,1rem+1.8vw,2.25rem)] font-medium tracking-tight text-accent-soft underline decoration-accent/40 underline-offset-8 transition-colors hover:text-text hover:decoration-accent"
           >
             {sitio.email}
           </a>
           <div className="mt-8 flex flex-wrap items-center gap-3">
-            <CopiarEmail email={sitio.email} />
+            <a href={mailto} className="btn btn-primario">
+              Enviar mail
+            </a>
+            {sitio.whatsapp && (
+              <a href={whatsapp} target="_blank" rel="noopener noreferrer" className="btn btn-fantasma">
+                WhatsApp
+              </a>
+            )}
             {redes.map((r) => (
               <a key={r.nombre} href={r.url} target="_blank" rel="noopener noreferrer" className="btn btn-fantasma">
                 {r.nombre}
@@ -36,6 +55,23 @@ export function Contacto() {
               </a>
             ))}
           </div>
+          <p className="mt-4 text-sm text-muted">
+            ¿No se abre tu programa de correo? Escribime desde{" "}
+            <a href={gmail} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-text">
+              Gmail
+            </a>{" "}
+            u{" "}
+            <a href={outlook} target="_blank" rel="noopener noreferrer" className="underline underline-offset-4 hover:text-text">
+              Outlook
+            </a>
+            .
+          </p>
+        </div>
+        {fotos.length > 0 && (
+          <div className="revela">
+            <Rollo fotos={fotos} />
+          </div>
+        )}
         </div>
 
         {sitio.formspreeId && (

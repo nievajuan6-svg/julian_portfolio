@@ -18,6 +18,9 @@ export const sitio = {
   // ⚠️ COMPLETAR: tu email real
   email: "tuemail@ejemplo.com",
 
+  // WhatsApp: número con código de país, solo dígitos (sin +, espacios ni guiones). Vacío = no se muestra el botón.
+  whatsapp: "5491120053140", // +54 9 11 2005-3140
+
   // ⚠️ COMPLETAR: pegá la dirección completa de cada red. Las que dejes vacías ("") no se muestran.
   redes: [
     { nombre: "Instagram", url: "" }, // ej: "https://instagram.com/tuusuario"

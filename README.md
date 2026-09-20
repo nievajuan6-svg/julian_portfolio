@@ -6,11 +6,12 @@ Sitio web de portfolio de **Julián Piaggio**, ilustrador digital (personajes, c
 
 ## Qué incluye
 
-- **Hero** con una ilustración destacada y estado de disponibilidad.
+- **Hero** con una ilustración destacada a pantalla completa.
 - **Galería masonry** con filtros por categoría (generados solos desde las carpetas) y URL compartible (`?cat=…`).
 - **Visor de obra** (lightbox) con ficha completa: título, categoría, software, año y cliente. Navegación con flechas, teclado y swipe.
 - **Proceso**: comparador boceto ↔ resultado final + tira con las etapas (solo imágenes).
-- **Sobre mí / CV**, **contacto** (email, redes y formulario opcional).
+- **Sobre mí / CV**, con un retrato difuminado de fondo detrás del título.
+- **Contacto**: botones "Enviar mail" (abre el programa de correo, con enlaces a Gmail y Outlook web) y WhatsApp, redes, formulario opcional y un **rollo de fotos** que corre solo.
 - SEO (Open Graph, JSON-LD, sitemap), accesibilidad (teclado, `prefers-reduced-motion`, contraste AA) y carga rápida.
 
 ## Stack
@@ -28,6 +29,8 @@ contenido/
 │   ├── concept-art/
 │   └── editorial/
 ├── hero/               ← 1 imagen para la portada
+├── retrato/            ← 1 foto tuya, se ve difuminada detrás de "Sobre mí"
+├── fotos/              ← fotos chicas del rollo de Contacto (se ordenan por nombre)
 └── proceso/
     └── Nombre de la obra/   1_boceto.png, 2_linea.png, 3_render.png, 4_final.png
 ```
@@ -50,6 +53,7 @@ El manual completo con todos los casos está en [`manual-subir-obras.html`](manu
 ## Editar textos
 
 Todos los textos (email, redes, "Sobre mí", experiencia, formación, disponibilidad) están en un único archivo: [`contenido/sitio.ts`](contenido/sitio.ts).
+El email, el WhatsApp (`whatsapp`, con código de país y solo dígitos) y las redes también se cambian ahí.
 El PDF del CV va en `public/cv/julian-piaggio-cv.pdf` (si existe, aparece el botón de descarga).
 
 ## Desarrollo local
@@ -66,6 +70,6 @@ Requiere Node 20+.
 
 Cada `git push` a `main` dispara `.github/workflows/deploy.yml`, que construye el sitio y lo publica en GitHub Pages (Settings → Pages → Source: **GitHub Actions**). Las imágenes optimizadas no se suben al repo: se regeneran en cada deploy a partir de los originales de `contenido/`.
 
-> Las obras cuyo título empieza con **"Ejemplo"** son de muestra para ver el diseño. Borralas al subir las tuyas.
+> `contenido/retrato/retrato-ejemplo.jpg` es un avatar ficticio y las `contenido/fotos/ejemplo-*.jpg` son recortes de obras, solo para previsualizar. Reemplazalos por fotos reales. Las obras cuyo título empieza con **"Ejemplo"** también son de muestra.
 
 © Julián Piaggio. Todos los derechos reservados.
