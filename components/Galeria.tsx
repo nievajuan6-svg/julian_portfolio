@@ -46,14 +46,14 @@ export function Galeria({ obras, categorias }: { obras: Obra[]; categorias: Cate
   return (
     <>
       {categorias.length > 1 && (
-        <div role="group" aria-label="Filtrar por categoría" className="mb-8 flex flex-wrap gap-x-6 gap-y-2">
+        <div role="group" aria-label="Filtrar por categoría" className="mb-6 flex flex-wrap gap-x-5 gap-y-0 md:mb-8 md:gap-x-6 md:gap-y-2">
           {filtros.map((f) => (
             <button
               key={f.slug}
               type="button"
               aria-pressed={cat === f.slug}
               onClick={() => elegirCategoria(f.slug)}
-              className={`cursor-pointer border-b py-1 text-xs uppercase tracking-[0.14em] transition-colors duration-200 ${
+              className={`cursor-pointer border-b py-2.5 text-xs md:py-1 uppercase tracking-[0.14em] transition-colors duration-200 ${
                 cat === f.slug ? "border-accent-soft text-text" : "border-transparent text-muted hover:text-text"
               }`}
             >

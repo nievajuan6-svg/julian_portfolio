@@ -11,7 +11,7 @@ export function SobreMi({ cv }: { cv: boolean }) {
           {retrato && (
             // Foto difuminada detrás del título: se desvanece hacia los bordes
             <div
-              className="pointer-events-none absolute -left-[12%] -top-24 -z-10 aspect-square w-[min(120%,34rem)] bg-cover opacity-40 [mask-image:radial-gradient(closest-side,#000_25%,transparent_100%)]"
+              className="pointer-events-none absolute -left-[12%] -top-24 -z-10 aspect-square w-[min(120%,34rem)] bg-cover opacity-30 md:opacity-40 [mask-image:radial-gradient(closest-side,#000_25%,transparent_100%)]"
               style={lqipFondo(retrato)}
               aria-hidden
             >

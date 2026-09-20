@@ -129,12 +129,14 @@ html.menu-abierto {
       box-shadow 0.4s var(--ease-out-expo),
       border-color 0.3s;
   }
-  .tarjeta:hover {
-    transform: translateY(-4px);
-    border-color: rgb(59 130 246 / 0.6);
-    box-shadow:
-      0 0 0 1px rgb(59 130 246 / 0.35),
-      0 24px 60px -24px rgb(59 130 246 / 0.55);
+  @media (hover: hover) {
+    .tarjeta:hover {
+      transform: translateY(-4px);
+      border-color: rgb(59 130 246 / 0.6);
+      box-shadow:
+        0 0 0 1px rgb(59 130 246 / 0.35),
+        0 24px 60px -24px rgb(59 130 246 / 0.55);
+    }
   }
   .chip {
     display: inline-flex;

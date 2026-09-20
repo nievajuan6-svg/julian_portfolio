@@ -6,7 +6,7 @@ type Props = { nombre: string; subtitulo: string; imagen: Imagen | null };
 /** Portada minimalista: solo la ilustración. El nombre vive en la barra superior. */
 export function Hero({ nombre, subtitulo, imagen }: Props) {
   return (
-    <section id="inicio" className="relative isolate min-h-[100svh] overflow-hidden">
+    <section id="inicio" className="relative isolate min-h-[72svh] md:min-h-[100svh] overflow-hidden">
       <h1 className="sr-only">
         {nombre} — {subtitulo}
       </h1>
