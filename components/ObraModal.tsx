@@ -71,7 +71,7 @@ export default function ObraModal({ lista, slug, onCambiar, onCerrar }: Props) {
           autoFocus
           onClick={() => ref.current?.close()}
           aria-label="Cerrar"
-          className="grid h-11 w-11 cursor-pointer place-items-center rounded-full border border-border bg-surface/70 transition hover:border-accent"
+          className="grid h-11 w-11 cursor-pointer place-items-center rounded-xs border border-border bg-surface/70 transition hover:border-accent"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" aria-hidden>
             <path d="M6 6l12 12M18 6L6 18" strokeLinecap="round" />
@@ -100,10 +100,10 @@ export default function ObraModal({ lista, slug, onCambiar, onCerrar }: Props) {
 
         {lista.length > 1 && (
           <>
-            <button type="button" onClick={() => ir(-1)} aria-label="Obra anterior" className="absolute left-2 top-1/2 grid h-12 w-12 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-border bg-bg/70 backdrop-blur transition hover:border-accent md:left-6">
+            <button type="button" onClick={() => ir(-1)} aria-label="Obra anterior" className="absolute left-2 top-1/2 grid h-12 w-12 -translate-y-1/2 cursor-pointer place-items-center rounded-xs border border-border bg-bg/70 backdrop-blur transition hover:border-accent md:left-6">
               <Flecha dir="izq" />
             </button>
-            <button type="button" onClick={() => ir(1)} aria-label="Obra siguiente" className="absolute right-2 top-1/2 grid h-12 w-12 -translate-y-1/2 cursor-pointer place-items-center rounded-full border border-border bg-bg/70 backdrop-blur transition hover:border-accent md:right-6">
+            <button type="button" onClick={() => ir(1)} aria-label="Obra siguiente" className="absolute right-2 top-1/2 grid h-12 w-12 -translate-y-1/2 cursor-pointer place-items-center rounded-xs border border-border bg-bg/70 backdrop-blur transition hover:border-accent md:right-6">
               <Flecha dir="der" />
             </button>
           </>

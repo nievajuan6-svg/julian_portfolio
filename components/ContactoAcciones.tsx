@@ -29,7 +29,7 @@ export function CopiarEmail({ email }: { email: string }) {
 }
 
 const campo =
-  "w-full rounded-xl border border-border bg-surface/70 px-4 py-3.5 text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus-visible:outline-none";
+  "w-full rounded-xs border border-border bg-surface/70 px-4 py-3.5 text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus-visible:outline-none";
 
 export function FormularioContacto({ formspreeId }: { formspreeId: string }) {
   const [estado, setEstado] = useState<Estado>("reposo");
@@ -54,7 +54,7 @@ export function FormularioContacto({ formspreeId }: { formspreeId: string }) {
 
   if (estado === "ok")
     return (
-      <div role="status" className="rounded-2xl border border-accent/40 bg-surface/70 p-8 text-center">
+      <div role="status" className="rounded-xs border border-accent/40 bg-surface/70 p-8 text-center">
         <p className="font-display text-2xl font-bold">¡Mensaje enviado!</p>
         <p className="mt-2 text-muted">Gracias por escribir. Te respondo a la brevedad.</p>
       </div>

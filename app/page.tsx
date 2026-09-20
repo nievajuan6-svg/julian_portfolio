@@ -44,25 +44,16 @@ export default function Home() {
 
   return (
     <>
-      <a href="#galeria" className="sr-only z-[70] rounded-full bg-accent px-4 py-2 font-semibold text-[#050a18] focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
+      <a href="#galeria" className="sr-only z-[70] rounded-xs bg-accent px-4 py-2 font-semibold text-[#050a18] focus:not-sr-only focus:fixed focus:left-4 focus:top-4">
         Saltar al contenido
       </a>
       <Header nombre={sitio.nombre} enlaces={enlaces} />
       <main>
-        <Hero
-          nombre={sitio.nombre}
-          subtitulo={sitio.subtitulo}
-          disponible={sitio.disponible}
-          textoDisponible={sitio.textoDisponible}
-          imagen={imagenHero}
-        />
+        <Hero nombre={sitio.nombre} subtitulo={sitio.subtitulo} imagen={imagenHero} />
 
         <section id="galeria" className="seccion">
           <div className="contenedor">
-            <header className="revela mb-12 max-w-2xl">
-              <p className="etiqueta mb-4">Galería</p>
-              <h2 className="titulo-seccion">Obras seleccionadas</h2>
-            </header>
+            <h2 className="titulo-seccion revela mb-8">Galería</h2>
             <Galeria obras={obras} categorias={categorias} />
           </div>
         </section>

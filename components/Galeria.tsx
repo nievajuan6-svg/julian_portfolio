@@ -46,28 +46,25 @@ export function Galeria({ obras, categorias }: { obras: Obra[]; categorias: Cate
   return (
     <>
       {categorias.length > 1 && (
-        <div role="group" aria-label="Filtrar por categoría" className="-mx-4 mb-10 flex gap-2 overflow-x-auto px-4 pb-2 md:mx-0 md:flex-wrap md:overflow-visible md:px-0 scroll-fino">
+        <div role="group" aria-label="Filtrar por categoría" className="mb-8 flex flex-wrap gap-x-6 gap-y-2">
           {filtros.map((f) => (
             <button
               key={f.slug}
               type="button"
               aria-pressed={cat === f.slug}
               onClick={() => elegirCategoria(f.slug)}
-              className={`shrink-0 cursor-pointer rounded-full border px-5 py-2.5 text-sm font-medium transition-all duration-200 active:scale-95 ${
-                cat === f.slug
-                  ? "border-accent bg-accent text-[#050a18] shadow-[0_0_28px_-4px_rgb(59_130_246/0.6)]"
-                  : "border-border bg-surface/60 text-muted hover:border-accent/60 hover:text-text"
+              className={`cursor-pointer border-b py-1 text-xs uppercase tracking-[0.14em] transition-colors duration-200 ${
+                cat === f.slug ? "border-accent-soft text-text" : "border-transparent text-muted hover:text-text"
               }`}
             >
               {f.label}
-              <span className={`ml-2 text-xs ${cat === f.slug ? "opacity-70" : "opacity-50"}`}>{f.count}</span>
             </button>
           ))}
         </div>
       )}
 
       {obras.length === 0 ? (
-        <p className="rounded-2xl border border-dashed border-border p-10 text-center text-muted">
+        <p className="rounded-xs border border-dashed border-border p-10 text-center text-muted">
           Todavía no hay obras. Arrastrá imágenes a <code className="text-accent-soft">contenido/obras/</code> y corré <code className="text-accent-soft">npm run obras</code>.
         </p>
       ) : (

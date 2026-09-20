@@ -10,7 +10,7 @@ export function ObraCard({ obra, eager, onAbrir }: { obra: Obra; eager?: boolean
       type="button"
       onClick={onAbrir}
       aria-label={`Ver "${obra.titulo}" en grande`}
-      className="tarjeta group relative block w-full cursor-zoom-in overflow-hidden rounded-xl border border-border bg-surface text-left"
+      className="tarjeta group relative block w-full cursor-zoom-in overflow-hidden rounded-xs border border-border bg-surface text-left"
     >
       <Picture img={obra} alt={`${obra.titulo}${obra.software ? `, ilustración digital en ${obra.software}` : ""}`} sizes={SIZES} eager={eager} />
       <span

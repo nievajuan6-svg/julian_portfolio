@@ -15,7 +15,7 @@
 
   --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
   --text-hero: clamp(3.4rem, 1.2rem + 11vw, 11rem);
-  --text-h2: clamp(2.2rem, 1.3rem + 3.6vw, 4.5rem);
+  --text-h2: clamp(1.5rem, 1.2rem + 1vw, 2rem);
 }
 
 html {
@@ -67,7 +67,7 @@ html.menu-abierto {
     }
   }
   .seccion {
-    padding-block: clamp(5rem, 10vw, 9rem);
+    padding-block: clamp(4rem, 8vw, 7rem);
   }
   .etiqueta {
     font-size: 0.75rem;
@@ -79,9 +79,9 @@ html.menu-abierto {
   .titulo-seccion {
     font-family: var(--font-display);
     font-size: var(--text-h2);
-    line-height: 1;
-    letter-spacing: -0.035em;
-    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 500;
     text-wrap: balance;
   }
   .btn {
@@ -90,8 +90,8 @@ html.menu-abierto {
     justify-content: center;
     gap: 0.6rem;
     min-height: 3rem;
-    padding: 0 1.6rem;
-    border-radius: 999px;
+    padding: 0 1.4rem;
+    border-radius: 2px;
     font-weight: 600;
     font-size: 0.95rem;
     transition:
@@ -140,8 +140,8 @@ html.menu-abierto {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.45rem 0.9rem;
-    border-radius: 999px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2px;
     border: 1px solid var(--color-border);
     background: rgb(17 24 39 / 0.6);
     font-size: 0.875rem;

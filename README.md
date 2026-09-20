@@ -9,7 +9,7 @@ Sitio web de portfolio de **Julián Piaggio**, ilustrador digital (personajes, c
 - **Hero** con una ilustración destacada y estado de disponibilidad.
 - **Galería masonry** con filtros por categoría (generados solos desde las carpetas) y URL compartible (`?cat=…`).
 - **Visor de obra** (lightbox) con ficha completa: título, categoría, software, año y cliente. Navegación con flechas, teclado y swipe.
-- **Proceso**: comparador boceto ↔ resultado final + tira paso a paso con notas.
+- **Proceso**: comparador boceto ↔ resultado final + tira con las etapas (solo imágenes).
 - **Sobre mí / CV**, **contacto** (email, redes y formulario opcional).
 - SEO (Open Graph, JSON-LD, sitemap), accesibilidad (teclado, `prefers-reduced-motion`, contraste AA) y carga rápida.
 
@@ -29,7 +29,7 @@ contenido/
 │   └── editorial/
 ├── hero/               ← 1 imagen para la portada
 └── proceso/
-    └── Nombre de la obra/   1_boceto.png, 2_linea.png, 3_render.png, 4_final.png, notas.txt
+    └── Nombre de la obra/   1_boceto.png, 2_linea.png, 3_render.png, 4_final.png
 ```
 
 **Nombre de cada obra:** `Titulo__Software__Año__Cliente.png` (doble guión bajo; el cliente es opcional).

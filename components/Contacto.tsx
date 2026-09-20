@@ -12,16 +12,16 @@ export function Contacto() {
       />
       <div className="contenedor">
         <div className="revela max-w-4xl">
+          <h2 className="titulo-seccion">Contacto</h2>
           {sitio.disponible && (
-            <p className="chip mb-8 border-accent/30">
+            <p className="chip mt-6 border-accent/30">
               <span className="punto-vivo h-2 w-2 rounded-full bg-green-400" aria-hidden />
               {sitio.textoDisponible}
             </p>
           )}
-          <h2 className="titulo-seccion">¿Hablamos sobre tu próximo proyecto o vacante?</h2>
           <a
             href={`mailto:${sitio.email}?subject=${encodeURIComponent("Consulta desde tu portfolio")}`}
-            className="mt-10 block break-all font-display text-[clamp(1.5rem,1rem+3vw,3.25rem)] font-bold tracking-tight text-accent-soft underline decoration-accent/40 decoration-2 underline-offset-8 transition-colors hover:text-text hover:decoration-accent"
+            className="mt-8 block break-all font-display text-[clamp(1.25rem,1rem+1.8vw,2.25rem)] font-medium tracking-tight text-accent-soft underline decoration-accent/40 underline-offset-8 transition-colors hover:text-text hover:decoration-accent"
           >
             {sitio.email}
           </a>

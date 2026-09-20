@@ -1,4 +1,0 @@
-1: Thumbnails rápidos para encontrar la pose y el ritmo de la composición.
-2: Bloqueo de formas y paleta limitada en azules para fijar la atmósfera.
-3: Luces, volumen del rostro y detalles de textura en el cabello.
-4: Ajustes finales de color, contraste y resplandor.

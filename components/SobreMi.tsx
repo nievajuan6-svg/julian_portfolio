@@ -6,9 +6,8 @@ export function SobreMi({ cv }: { cv: boolean }) {
     <section id="sobre-mi" className="seccion">
       <div className="contenedor grid gap-14 lg:grid-cols-[1fr_1.1fr] lg:gap-24">
         <div className="lg:sticky lg:top-28 lg:self-start">
-          <p className="etiqueta revela mb-4">Sobre mí</p>
-          <h2 className="titulo-seccion revela">Imágenes con atmósfera e intención</h2>
-          <div className="revela mt-8 space-y-5 text-lg leading-relaxed text-muted">
+          <h2 className="titulo-seccion revela">Sobre mí</h2>
+          <div className="revela mt-8 space-y-4 leading-relaxed text-muted">
             {sitio.sobreMi.map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -38,9 +37,9 @@ export function SobreMi({ cv }: { cv: boolean }) {
 
           <div className="revela">
             <h3 className="etiqueta mb-5">Habilidades</h3>
-            <ul className="grid gap-px overflow-hidden rounded-2xl border border-border bg-border sm:grid-cols-2">
+            <ul className="grid gap-px overflow-hidden rounded-xs border border-border bg-border sm:grid-cols-2">
               {sitio.habilidades.map((h) => (
-                <li key={h} className="bg-surface px-5 py-5 font-display text-lg font-bold leading-snug">
+                <li key={h} className="bg-surface px-5 py-5 font-display text-base font-medium leading-snug">
                   {h}
                 </li>
               ))}
@@ -52,7 +51,7 @@ export function SobreMi({ cv }: { cv: boolean }) {
             <ol className="relative space-y-8 border-l border-border pl-8">
               {sitio.experiencia.map((e, i) => (
                 <li key={i} className="relative">
-                  <span className="absolute -left-[2.45rem] top-1.5 h-2.5 w-2.5 rounded-full bg-accent shadow-[0_0_12px_2px_rgb(59_130_246/0.6)]" aria-hidden />
+                  <span className="absolute -left-[2.25rem] top-2 h-2 w-2 bg-accent" aria-hidden />
                   <p className="text-sm tabular-nums text-accent-soft">{e.anio}</p>
                   <p className="mt-1 font-display text-xl font-bold">{e.titulo}</p>
                   <p className="mt-1 text-muted">{e.detalle}</p>

@@ -45,12 +45,9 @@ export function Header({ nombre, enlaces }: { nombre: string; enlaces: Enlace[] 
         scrolled || abierto ? "border-b border-border/70 bg-bg/75 backdrop-blur-xl" : "border-b border-transparent"
       }`}
     >
-      <div className="contenedor flex h-16 items-center justify-between">
-        <a href="#inicio" className="flex items-center gap-2.5 font-display text-lg font-bold tracking-tight" onClick={() => setAbierto(false)}>
-          <span className="grid h-8 w-8 place-items-center rounded-lg bg-accent text-sm font-bold text-[#050a18]" aria-hidden>
-            JP
-          </span>
-          <span className="hidden sm:inline">{nombre}</span>
+      <div className="contenedor flex h-14 items-center justify-between">
+        <a href="#inicio" className="font-display text-sm font-medium tracking-wide" onClick={() => setAbierto(false)}>
+          {nombre}
         </a>
 
         <nav aria-label="Principal" className="hidden md:block">
@@ -60,13 +57,13 @@ export function Header({ nombre, enlaces }: { nombre: string; enlaces: Enlace[] 
                 <a
                   href={`#${l.id}`}
                   aria-current={activa === l.id ? "true" : undefined}
-                  className={`relative rounded-full px-4 py-2 text-sm transition-colors hover:text-text ${
+                  className={`relative px-3 py-2 text-[13px] transition-colors hover:text-text ${
                     activa === l.id ? "text-text" : "text-muted"
                   }`}
                 >
                   {l.label}
                   <span
-                    className={`absolute inset-x-4 -bottom-px h-px bg-accent-soft transition-opacity duration-300 ${
+                    className={`absolute inset-x-3 -bottom-px h-px bg-accent-soft transition-opacity duration-300 ${
                       activa === l.id ? "opacity-100" : "opacity-0"
                     }`}
                   />
@@ -78,7 +75,7 @@ export function Header({ nombre, enlaces }: { nombre: string; enlaces: Enlace[] 
 
         <button
           type="button"
-          className="grid h-11 w-11 place-items-center rounded-full border border-border md:hidden"
+          className="grid h-10 w-10 place-items-center rounded-xs border border-border md:hidden"
           aria-label={abierto ? "Cerrar menú" : "Abrir menú"}
           aria-expanded={abierto}
           aria-controls="menu-movil"
@@ -93,7 +90,7 @@ export function Header({ nombre, enlaces }: { nombre: string; enlaces: Enlace[] 
 
       <div
         id="menu-movil"
-        className={`fixed inset-x-0 top-16 h-[calc(100dvh-4rem)] bg-bg/95 backdrop-blur-2xl transition-opacity duration-300 md:hidden ${
+        className={`fixed inset-x-0 top-14 h-[calc(100dvh-3.5rem)] bg-bg/95 backdrop-blur-2xl transition-opacity duration-300 md:hidden ${
           abierto ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
         aria-hidden={!abierto}
@@ -102,7 +99,7 @@ export function Header({ nombre, enlaces }: { nombre: string; enlaces: Enlace[] 
         <ul className="contenedor flex h-full flex-col justify-center gap-2 pb-16">
           {enlaces.map((l, i) => (
             <li key={l.id} style={{ transitionDelay: abierto ? `${i * 50}ms` : "0ms" }} className={`transition-all duration-500 ${abierto ? "translate-y-0 opacity-100" : "translate-y-3 opacity-0"}`}>
-              <a href={`#${l.id}`} onClick={() => setAbierto(false)} className="block border-b border-border/60 py-4 font-display text-4xl font-bold tracking-tight">
+              <a href={`#${l.id}`} onClick={() => setAbierto(false)} className="block border-b border-border/60 py-4 font-display text-3xl font-medium tracking-tight">
                 {l.label}
               </a>
             </li>
