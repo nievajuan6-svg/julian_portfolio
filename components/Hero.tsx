@@ -13,7 +13,7 @@ export function Hero({ nombre, subtitulo, imagen }: Props) {
       <div className="absolute inset-0 -z-10 bg-bg">
         {imagen ? (
           <div className="hero-img absolute inset-0 origin-center bg-cover bg-center" style={lqipFondo(imagen)}>
-            <PictureFill img={imagen} alt="" sizes="100vw" priority />
+            <PictureFill img={imagen} alt="" sizes="100vw" priority className="object-[24%_center] md:object-center" />
           </div>
         ) : (
           <div
