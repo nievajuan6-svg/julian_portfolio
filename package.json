@@ -1,0 +1,28 @@
+{
+  "name": "julian-piaggio-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "obras": "node scripts/build-obras.mjs",
+    "dev": "npm run obras && next dev",
+    "prebuild": "node scripts/build-obras.mjs",
+    "build": "next build",
+    "start": "npx serve out",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "^15.5.4",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.13",
+    "@types/node": "^24.5.2",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "sharp": "^0.34.3",
+    "tailwindcss": "^4.1.13",
+    "typescript": "^5.9.2"
+  }
+}

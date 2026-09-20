@@ -1,0 +1,4 @@
+1: Siluetas y planos de profundidad.
+2: Bloques de color por capas atmosféricas.
+3: Luz de luna, estrellas y bruma.
+4: Acabado y corrección de color.

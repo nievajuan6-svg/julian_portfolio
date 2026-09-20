@@ -1,0 +1,236 @@
+@import "tailwindcss";
+
+/* ───────── Tokens de diseño (paleta del documento original) ───────── */
+@theme {
+  --color-bg: #0a0c10;
+  --color-surface: #111827;
+  --color-border: #1f2a44;
+  --color-accent: #3b82f6;
+  --color-accent-soft: #7dd3fc;
+  --color-text: #e5e7eb;
+  --color-muted: #94a3b8;
+
+  --font-display: var(--font-space), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
+  --text-hero: clamp(3.4rem, 1.2rem + 11vw, 11rem);
+  --text-h2: clamp(2.2rem, 1.3rem + 3.6vw, 4.5rem);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  background: var(--color-bg);
+  color-scheme: dark;
+}
+body {
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+/* Grano sutil: evita el "banding" de los degradados sobre el negro */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+::selection {
+  background: rgb(59 130 246 / 0.35);
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent-soft);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+html:has(dialog[open]),
+html.menu-abierto {
+  overflow: hidden;
+}
+
+/* ───────── Componentes ───────── */
+@layer components {
+  .contenedor {
+    width: min(100% - 2rem, 80rem);
+    margin-inline: auto;
+  }
+  @media (min-width: 768px) {
+    .contenedor {
+      width: min(100% - 4rem, 80rem);
+    }
+  }
+  .seccion {
+    padding-block: clamp(5rem, 10vw, 9rem);
+  }
+  .etiqueta {
+    font-size: 0.75rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--color-accent-soft);
+    font-weight: 500;
+  }
+  .titulo-seccion {
+    font-family: var(--font-display);
+    font-size: var(--text-h2);
+    line-height: 1;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    min-height: 3rem;
+    padding: 0 1.6rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition:
+      transform 0.15s var(--ease-out-expo),
+      box-shadow 0.25s var(--ease-out-expo),
+      background-color 0.2s,
+      border-color 0.2s;
+    cursor: pointer;
+  }
+  .btn:active {
+    transform: scale(0.97);
+  }
+  .btn-primario {
+    background: var(--color-accent);
+    color: #050a18;
+    box-shadow: 0 0 0 0 rgb(59 130 246 / 0);
+  }
+  .btn-primario:hover {
+    box-shadow: 0 0 32px 2px rgb(59 130 246 / 0.5);
+    background: #5b9bff;
+  }
+  .btn-fantasma {
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    background: rgb(17 24 39 / 0.5);
+    backdrop-filter: blur(8px);
+  }
+  .btn-fantasma:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 0 24px -4px rgb(59 130 246 / 0.45);
+  }
+  .tarjeta {
+    transition:
+      transform 0.4s var(--ease-out-expo),
+      box-shadow 0.4s var(--ease-out-expo),
+      border-color 0.3s;
+  }
+  .tarjeta:hover {
+    transform: translateY(-4px);
+    border-color: rgb(59 130 246 / 0.6);
+    box-shadow:
+      0 0 0 1px rgb(59 130 246 / 0.35),
+      0 24px 60px -24px rgb(59 130 246 / 0.55);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--color-border);
+    background: rgb(17 24 39 / 0.6);
+    font-size: 0.875rem;
+    color: var(--color-text);
+    transition:
+      border-color 0.2s,
+      color 0.2s;
+  }
+  .chip:hover {
+    border-color: var(--color-accent);
+  }
+}
+
+/* ───────── Movimiento (una sola curva, dos duraciones) ───────── */
+@keyframes subir {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes aparecer {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes asentar {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes pulso {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgb(74 222 128 / 0.6);
+  }
+  50% {
+    box-shadow: 0 0 0 7px rgb(74 222 128 / 0);
+  }
+}
+.entrada {
+  animation: subir 0.7s var(--ease-out-expo) both;
+  animation-delay: calc(var(--d, 0) * 90ms + 80ms);
+}
+.aparece {
+  animation: aparecer 0.45s var(--ease-out-expo) both;
+  animation-delay: calc(var(--d, 0) * 35ms);
+}
+.hero-img {
+  animation: asentar 2.4s var(--ease-out-expo) both;
+}
+.punto-vivo {
+  animation: pulso 2.4s ease-in-out infinite;
+}
+/* Aparición al hacer scroll: CSS puro, cero JavaScript */
+@supports (animation-timeline: view()) {
+  .revela {
+    animation: subir linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .revela {
+    animation: none !important;
+  }
+}
+
+/* Barra de scroll horizontal discreta (tira de proceso) */
+.scroll-fino {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}

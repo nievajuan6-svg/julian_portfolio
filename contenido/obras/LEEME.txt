@@ -1,0 +1,15 @@
+CARPETA DE OBRAS
+================
+1) Arrastra tu dibujo a la carpeta de su categoria (personajes, concept-art, editorial).
+   Si queres una categoria nueva, crea una carpeta nueva (ej: "bocetos") y aparece sola como filtro.
+
+2) Nombre del archivo:   Titulo__Software__Año__Cliente.png
+   - Separa con DOBLE guion bajo  __
+   - El cliente es opcional
+   - Ejemplo:  Retrato de Ana__Krita__2025.png
+   - Para fijar el orden: numero al principio:  01_Retrato de Ana__Krita__2025.png
+
+3) Doble clic en  subir.bat   (procesa, y publica la web)
+
+Las obras que empiezan con "Ejemplo" son de muestra: borralas cuando subas las tuyas.
+Manual completo: manual-subir-obras.html

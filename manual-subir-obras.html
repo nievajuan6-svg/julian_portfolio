@@ -1,0 +1,405 @@
+<title>Manual de obras</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Figtree:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f2f5fb;
+    --surface: #ffffff;
+    --sunken: #e6ecf7;
+    --ink: #0d1424;
+    --muted: #55617a;
+    --line: #d3dcee;
+    --accent: #2456d6;
+    --accent-ink: #ffffff;
+    --accent-soft: #dce7ff;
+    --ok: #0f7a4a;
+    --ok-soft: #dcf5e8;
+    --bad: #b42323;
+    --bad-soft: #fde4e4;
+    --warn: #8a5a00;
+    --warn-soft: #fff1cf;
+    --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0c10;
+      --surface: #111827;
+      --sunken: #0d1320;
+      --ink: #e5e7eb;
+      --muted: #94a3b8;
+      --line: #1f2a44;
+      --accent: #7dd3fc;
+      --accent-ink: #06121f;
+      --accent-soft: #14294a;
+      --ok: #6ee7a8;
+      --ok-soft: #0f2a1e;
+      --bad: #fca5a5;
+      --bad-soft: #341616;
+      --warn: #fcd34d;
+      --warn-soft: #2f2410;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0c10;
+    --surface: #111827;
+    --sunken: #0d1320;
+    --ink: #e5e7eb;
+    --muted: #94a3b8;
+    --line: #1f2a44;
+    --accent: #7dd3fc;
+    --accent-ink: #06121f;
+    --accent-soft: #14294a;
+    --ok: #6ee7a8;
+    --ok-soft: #0f2a1e;
+    --bad: #fca5a5;
+    --bad-soft: #341616;
+    --warn: #fcd34d;
+    --warn-soft: #2f2410;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 17px/1.6 var(--body);
+    padding-inline: 20px;
+    padding-block: 40px 96px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 820px; margin-inline: auto; display: grid; gap: 64px; }
+  h1, h2, h3 { font-family: var(--display); letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+  h1 { font-size: clamp(2.3rem, 1.2rem + 4.6vw, 3.9rem); line-height: 1; font-weight: 700; }
+  h2 { font-size: clamp(1.55rem, 1.2rem + 1.4vw, 2.1rem); line-height: 1.1; font-weight: 700; }
+  h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+  p { margin: 0; max-width: 65ch; }
+  .lead { font-size: 1.15rem; color: var(--muted); margin-top: 16px; }
+  .eyebrow { font: 500 0.72rem/1 var(--mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; display: block; }
+  code, .mono { font-family: var(--mono); font-size: 0.86em; }
+  code { background: var(--sunken); padding: 0.15em 0.45em; border-radius: 5px; border: 1px solid var(--line); word-break: break-word; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  section { display: grid; gap: 22px; scroll-margin-top: 24px; }
+
+  /* Inicio: los tres movimientos */
+  .tres { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 32px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: var(--surface); }
+  .tres > div { padding: 22px 22px 24px; border-right: 1px solid var(--line); }
+  .tres > div:last-child { border-right: 0; }
+  .tres b { display: block; font: 700 1.25rem/1.15 var(--display); margin-bottom: 8px; }
+  .tres span { color: var(--muted); font-size: 0.95rem; display: block; }
+  .tres small { font: 500 0.7rem/1 var(--mono); color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; display: block; margin-bottom: 12px; }
+  @media (max-width: 640px) { .tres { grid-template-columns: 1fr; } .tres > div { border-right: 0; border-bottom: 1px solid var(--line); } .tres > div:last-child { border-bottom: 0; } }
+
+  nav.indice { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 28px; }
+  nav.indice a { color: var(--ink); text-decoration: none; font-size: 0.9rem; padding: 7px 14px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); }
+  nav.indice a:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* Árbol de carpetas */
+  pre.arbol { margin: 0; padding: 22px 24px; background: var(--sunken); border: 1px solid var(--line); border-radius: 12px; font: 400 0.9rem/1.75 var(--mono); overflow-x: auto; color: var(--ink); }
+  .arbol .c { color: var(--muted); }
+  .arbol .k { color: var(--accent); font-weight: 500; }
+
+  /* Constructor de nombres */
+  .constructor { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; display: grid; gap: 20px; }
+  .campos { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .campos .ancho { grid-column: 1 / -1; }
+  @media (max-width: 560px) { .campos { grid-template-columns: 1fr; } }
+  label { display: grid; gap: 6px; font-size: 0.85rem; font-weight: 600; }
+  label i { font-style: normal; font-weight: 400; color: var(--muted); }
+  input, select { font: 400 1rem var(--body); color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 9px; padding: 11px 13px; width: 100%; min-height: 46px; }
+  input:focus, select:focus { border-color: var(--accent); }
+  .salida { background: var(--sunken); border: 1px dashed var(--accent); border-radius: 12px; padding: 16px 18px; display: grid; gap: 10px; }
+  .salida small { font: 500 0.7rem/1 var(--mono); color: var(--muted); letter-spacing: 0.12em; text-transform: uppercase; }
+  .salida output { font: 500 1.02rem/1.5 var(--mono); word-break: break-all; display: block; user-select: all; }
+  .fila { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  button { font: 600 0.95rem var(--body); cursor: pointer; border: 0; border-radius: 999px; padding: 0 22px; min-height: 46px; background: var(--accent); color: var(--accent-ink); }
+  button:hover { filter: brightness(1.08); }
+  button:active { transform: scale(0.97); }
+  .avisos { display: grid; gap: 8px; }
+  .aviso { font-size: 0.9rem; padding: 10px 14px; border-radius: 9px; background: var(--warn-soft); color: var(--warn); }
+  .aviso.ok { background: var(--ok-soft); color: var(--ok); }
+
+  /* Pasos reales (orden importa) */
+  ol.pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: p; }
+  ol.pasos > li { counter-increment: p; display: grid; grid-template-columns: 44px 1fr; gap: 6px 18px; padding: 22px 0; border-top: 1px solid var(--line); }
+  ol.pasos > li:last-child { border-bottom: 1px solid var(--line); }
+  ol.pasos > li::before { content: counter(p); grid-row: span 2; width: 38px; height: 38px; display: grid; place-items: center; border-radius: 50%; background: var(--accent); color: var(--accent-ink); font: 700 1rem var(--display); }
+  ol.pasos h3 { align-self: center; }
+  ol.pasos p { color: var(--muted); }
+  ol.pasos .extra { grid-column: 2; margin-top: 8px; }
+
+  /* Tablas */
+  .tabla { overflow-x: auto; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 520px; font-size: 0.93rem; }
+  th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font: 500 0.7rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); background: var(--sunken); }
+  tr:last-child td { border-bottom: 0; }
+  .si, .no { display: inline-block; font: 600 0.72rem/1 var(--mono); padding: 5px 8px; border-radius: 6px; margin-right: 8px; }
+  .si { background: var(--ok-soft); color: var(--ok); }
+  .no { background: var(--bad-soft); color: var(--bad); }
+
+  .nota { border-left: 3px solid var(--accent); background: var(--accent-soft); padding: 14px 18px; border-radius: 0 10px 10px 0; font-size: 0.95rem; }
+  .nota.alerta { border-color: var(--warn); background: var(--warn-soft); }
+  ul.limpia { margin: 0; padding-left: 1.2em; display: grid; gap: 8px; }
+  details { border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+  details + details { margin-top: 10px; }
+  summary { cursor: pointer; padding: 16px 18px; font-weight: 600; list-style: none; display: flex; justify-content: space-between; gap: 12px; }
+  summary::after { content: "+"; color: var(--accent); font: 500 1.3rem/1 var(--mono); }
+  details[open] summary::after { content: "–"; }
+  details > div { padding: 0 18px 18px; color: var(--muted); display: grid; gap: 10px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } button:active { transform: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <span class="eyebrow">Manual · Portfolio de Julián Piaggio</span>
+    <h1>Cómo subir tus obras a la web</h1>
+    <p class="lead">Cada vez que tengas un dibujo nuevo, son tres movimientos. No hace falta tocar código ni volver a pedirle nada a Claude.</p>
+
+    <div class="tres">
+      <div><small>Movimiento 1</small><b>Arrastrar</b><span>Poné la imagen en la carpeta de su categoría.</span></div>
+      <div><small>Movimiento 2</small><b>Nombrar</b><span>El nombre del archivo es la ficha de la obra.</span></div>
+      <div><small>Movimiento 3</small><b>Doble clic en <span class="mono" style="display:inline;color:var(--accent)">subir.bat</span></b><span>Procesa y publica. En ~1 minuto está online.</span></div>
+    </div>
+
+    <nav class="indice" aria-label="Índice">
+      <a href="#carpetas">Carpetas</a>
+      <a href="#nombre">Nombrar una obra</a>
+      <a href="#pasos">Paso a paso</a>
+      <a href="#proceso">Proceso</a>
+      <a href="#extras">Portada, CV y textos</a>
+      <a href="#editar">Borrar y reordenar</a>
+      <a href="#problemas">Si algo falla</a>
+    </nav>
+  </header>
+
+  <section id="carpetas">
+    <div><span class="eyebrow">Dónde va cada cosa</span><h2>La carpeta es la categoría</h2></div>
+    <p>Todo vive dentro de <code>contenido/</code>. Donde pongas la imagen, ahí queda categorizada. Los filtros de la galería se arman solos a partir de estas carpetas.</p>
+<pre class="arbol"><span class="k">contenido/</span>
+├── <span class="k">obras/</span>
+│   ├── personajes/      <span class="c">← Personajes / Retratos</span>
+│   ├── concept-art/     <span class="c">← Concept Art / Entornos</span>
+│   ├── editorial/       <span class="c">← Ilustración Editorial</span>
+│   └── (tu carpeta nueva)/  <span class="c">← crea un filtro nuevo automáticamente</span>
+├── <span class="k">hero/</span>            <span class="c">← 1 imagen: la portada de la web</span>
+└── <span class="k">proceso/</span>
+    └── Nombre de la obra/   <span class="c">← 1_boceto, 2_linea, 3_render, 4_final</span></pre>
+    <p class="nota"><b>¿Categoría nueva?</b> Creá una carpeta dentro de <code>obras/</code> (por ejemplo <code>bocetos</code>) y arrastrá ahí las imágenes. El filtro aparece solo, con el nombre de la carpeta. Para que tenga un nombre más lindo, pedile a Claude que lo agregue en <code>contenido/categorias.json</code>.</p>
+  </section>
+
+  <section id="nombre">
+    <div><span class="eyebrow">La ficha va en el nombre</span><h2>Cómo nombrar cada obra</h2></div>
+    <p>El nombre del archivo lleva los datos separados por <b>doble guión bajo</b> (<code>__</code>, dos veces la tecla de guión bajo, sin espacios alrededor):</p>
+    <p style="max-width:none"><code style="font-size:1rem;padding:8px 14px;display:inline-block">Título__Software__Año__Cliente.png</code></p>
+
+    <div class="tabla"><table>
+      <thead><tr><th>Parte</th><th>¿Obligatoria?</th><th>Cómo escribirla</th></tr></thead>
+      <tbody>
+        <tr><td><b>Título</b></td><td>Sí</td><td>Como quieras que se lea. Con acentos y espacios está bien.</td></tr>
+        <tr><td><b>Software</b></td><td>Recomendada</td><td>Si usaste varios: <code>Blender + Photoshop</code>.</td></tr>
+        <tr><td><b>Año</b></td><td>Recomendada</td><td>4 cifras: <code>2025</code>.</td></tr>
+        <tr><td><b>Cliente</b></td><td>No</td><td>Solo si hubo cliente o proyecto. Si no, no pongas nada (ni el <code>__</code> final).</td></tr>
+        <tr><td><b>Número al inicio</b></td><td>No</td><td><code>01_</code> fija el orden en la galería. No se muestra. Sin número, se ordena por año (lo más nuevo primero).</td></tr>
+      </tbody>
+    </table></div>
+
+    <div class="tabla"><table>
+      <thead><tr><th>Nombre de archivo</th><th>Resultado</th></tr></thead>
+      <tbody>
+        <tr><td><span class="si">BIEN</span><code>Retrato de Ana__Krita__2025.png</code></td><td>Retrato de Ana · Krita · 2025</td></tr>
+        <tr><td><span class="si">BIEN</span><code>Ciudad flotante__Blender + Photoshop__2024__Estudio X.jpg</code></td><td>Con cliente “Estudio X”</td></tr>
+        <tr><td><span class="si">BIEN</span><code>01_Portada revista__Illustrator__2024.png</code></td><td>Sale primera en la galería</td></tr>
+        <tr><td><span class="no">MAL</span><code>Retrato de Ana - Krita - 2025.png</code></td><td>Sin <code>__</code>: se publica solo con título, y aparece un aviso.</td></tr>
+        <tr><td><span class="no">MAL</span><code>Retrato: Ana__Krita__2025.png</code></td><td>Windows no permite <code>: ? * " / \ | &lt; &gt;</code> en nombres de archivo.</td></tr>
+        <tr><td><span class="no">MAL</span><code>Retrato de Ana__Krita__25.png</code></td><td>El año debe tener 4 cifras. Se publica sin año y avisa.</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3 style="margin-top:12px">Constructor de nombres</h3>
+    <p>Completá los datos y copiá el nombre. Después renombrá tu archivo con eso (tecla <b>F2</b> sobre el archivo).</p>
+    <div class="constructor">
+      <div class="campos">
+        <label for="f-cat">Categoría (carpeta)
+          <select id="f-cat">
+            <option value="personajes">personajes</option>
+            <option value="concept-art">concept-art</option>
+            <option value="editorial">editorial</option>
+          </select>
+        </label>
+        <label for="f-num">Orden <i>(opcional, ej: 3)</i>
+          <input id="f-num" inputmode="numeric" maxlength="3" placeholder="vacío = automático">
+        </label>
+        <label for="f-tit" class="ancho">Título
+          <input id="f-tit" value="Retrato de Ana" autocomplete="off">
+        </label>
+        <label for="f-sof">Software
+          <input id="f-sof" value="Krita" autocomplete="off">
+        </label>
+        <label for="f-ani">Año
+          <input id="f-ani" inputmode="numeric" maxlength="4" value="2025" autocomplete="off">
+        </label>
+        <label for="f-cli">Cliente <i>(opcional)</i>
+          <input id="f-cli" placeholder="ej: Estudio X" autocomplete="off">
+        </label>
+        <label for="f-ext">Formato
+          <select id="f-ext"><option>.png</option><option>.jpg</option><option>.webp</option></select>
+        </label>
+      </div>
+      <div class="salida">
+        <small>Nombre del archivo</small>
+        <output id="o-nombre" for="f-tit f-sof f-ani f-cli f-num f-ext"></output>
+        <small>Guardalo en</small>
+        <output id="o-ruta" for="f-cat"></output>
+        <div class="fila"><button type="button" id="copiar">Copiar nombre</button><span id="estado" class="mono" style="color:var(--ok)" role="status"></span></div>
+      </div>
+      <div class="avisos" id="avisos" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="pasos">
+    <div><span class="eyebrow">Cada vez que subas obras</span><h2>Paso a paso</h2></div>
+    <ol class="pasos">
+      <li><h3>Guardá tu dibujo terminado</h3><p>PNG o JPG están perfectos. No hace falta achicarlo ni comprimirlo: la web genera sola las versiones livianas.</p></li>
+      <li><h3>Ponele el nombre correcto</h3><p>Usá el constructor de arriba o seguí el formato <code>Título__Software__Año__Cliente</code>.</p></li>
+      <li><h3>Arrastralo a la carpeta de su categoría</h3><p>Dentro de <code>contenido/obras/</code>: <code>personajes</code>, <code>concept-art</code> o <code>editorial</code>. Podés arrastrar muchas imágenes juntas.</p></li>
+      <li><h3>(Opcional) Mirá cómo queda</h3><p>Doble clic en <code>ver-web.bat</code> y se abre la web en tu compu. Si no te gusta algo, corregilo y se actualiza sola. Cerrá la ventana negra para detenerla.</p></li>
+      <li><h3>Doble clic en <code>subir.bat</code></h3><p>Abre una ventana negra: procesa las imágenes, te avisa si algún nombre está mal, y publica. Cuando dice “Listo”, esperá aproximadamente 1 minuto y recargá la web.</p></li>
+    </ol>
+    <p class="nota">Si al procesar aparece un aviso amarillo o rojo, leelo: dice exactamente <b>qué archivo</b> está mal y <b>cómo debería llamarse</b>. Las demás obras se publican igual.</p>
+  </section>
+
+  <section id="proceso">
+    <div><span class="eyebrow">Lo que más miran los estudios</span><h2>Mostrar tu proceso</h2></div>
+    <p>Creá una carpeta dentro de <code>contenido/proceso/</code> con el nombre de la obra y metele las etapas numeradas. La web arma sola el comparador boceto ↔ final y la tira de pasos.</p>
+    <pre class="arbol"><span class="k">contenido/proceso/Retrato de Ana/</span>
+├── 1_boceto.png     <span class="c">← “Boceto / Thumbnails”</span>
+├── 2_linea.png      <span class="c">← “Línea / Bloqueo de color”</span>
+├── 3_render.png     <span class="c">← “Render y detalles”</span>
+├── 4_final.png      <span class="c">← “Resultado final”</span>
+└── notas.txt        <span class="c">← opcional: una nota por etapa</span></pre>
+    <p>Dentro de <code>notas.txt</code>, una línea por etapa, con el número, dos puntos y el texto:</p>
+    <pre class="arbol">1: Thumbnails rápidos para encontrar la pose.
+2: Bloqueo de formas y paleta en azules.
+3: Luces, volumen y detalles del cabello.
+4: Ajustes finales de color y contraste.</pre>
+    <ul class="limpia">
+      <li>Mínimo <b>2 imágenes</b> (la primera es el “antes” y la última el “después”). Ideal: 4.</li>
+      <li>Usá el mismo tamaño y proporción en todas las etapas para que el comparador calce perfecto.</li>
+      <li>Podés tener 2 o 3 obras de proceso: una carpeta por obra.</li>
+    </ul>
+  </section>
+
+  <section id="extras">
+    <div><span class="eyebrow">Lo que no son obras</span><h2>Portada, CV y textos</h2></div>
+    <div class="tabla"><table>
+      <thead><tr><th>Qué</th><th>Dónde</th><th>Cómo</th></tr></thead>
+      <tbody>
+        <tr><td><b>Portada</b> (imagen grande de arriba)</td><td><code>contenido/hero/</code></td><td>Una sola imagen, ideal horizontal y de buena resolución (un detalle muy cercano de tu mejor obra). Borrá la de ejemplo <code>hero.png</code>.</td></tr>
+        <tr><td><b>CV en PDF</b></td><td><code>public/cv/</code></td><td>Guardalo con el nombre exacto <code>julian-piaggio-cv.pdf</code>. Cuando existe, aparece el botón “Descargar CV”.</td></tr>
+        <tr><td><b>Email, redes, “Sobre mí”, experiencia, formación</b></td><td><code>contenido/sitio.ts</code></td><td>Abrilo con el Bloc de notas. Cambiá solo lo que está entre comillas <code>"…"</code>. Las líneas con ⚠️ son las que faltan completar.</td></tr>
+      </tbody>
+    </table></div>
+    <p class="nota alerta"><b>Antes de publicar de verdad:</b> reemplazá el email de ejemplo <code>tuemail@ejemplo.com</code>, completá tus redes y borrá todas las obras que empiezan con <b>“Ejemplo”</b> (están en <code>obras/</code> y en <code>proceso/</code>), además de la portada de ejemplo.</p>
+  </section>
+
+  <section id="editar">
+    <div><span class="eyebrow">Cambios después de publicar</span><h2>Borrar, reemplazar y reordenar</h2></div>
+    <ul class="limpia">
+      <li><b>Borrar una obra:</b> eliminá el archivo de su carpeta y doble clic en <code>subir.bat</code>. Desaparece de la web.</li>
+      <li><b>Corregir el título, software o año:</b> renombrá el archivo (F2) y corré <code>subir.bat</code>.</li>
+      <li><b>Cambiar la imagen:</b> reemplazá el archivo por el nuevo con el mismo nombre y corré <code>subir.bat</code>.</li>
+      <li><b>Cambiar el orden:</b> agregale un número al principio del nombre (<code>01_</code>, <code>02_</code>…). Las obras con número van primero, en ese orden.</li>
+      <li><b>Mover de categoría:</b> arrastrá el archivo a otra carpeta de <code>obras/</code>.</li>
+    </ul>
+  </section>
+
+  <section id="problemas">
+    <div><span class="eyebrow">Si algo no sale como esperabas</span><h2>Problemas frecuentes</h2></div>
+    <div>
+      <details><summary>Subí una obra y no aparece en la web</summary><div>
+        <p>Esperá 1–2 minutos y recargá con <b>Ctrl + F5</b>. Si sigue sin aparecer, fijate en la ventana negra de <code>subir.bat</code>: si hay líneas rojas, ese archivo tiene el nombre mal (te dice cómo corregirlo).</p>
+        <p>También revisá en GitHub, pestaña <b>Actions</b>, que la última ejecución tenga el tilde verde.</p></div></details>
+      <details><summary>Me sale un aviso amarillo sobre un archivo</summary><div>
+        <p>Es un aviso, no un error: la obra se publica igual, pero le falta algún dato (software o año). Renombrá el archivo con el formato completo y volvé a correr <code>subir.bat</code>.</p></div></details>
+      <details><summary>Aparece “Ejemplo …” en mi galería</summary><div>
+        <p>Son obras de muestra. Borrá los archivos que empiezan con “Ejemplo” de <code>contenido/obras/</code> y la carpeta <code>Ejemplo …</code> de <code>contenido/proceso/</code>.</p></div></details>
+      <details><summary>Una imagen pesa muchísimo o GitHub la rechaza</summary><div>
+        <p>GitHub no acepta archivos de más de 100 MB. Exportá la obra final como PNG o JPG de hasta unos 4000 px de lado (menos de ~25 MB). Para la web es más que suficiente: el sitio usa como máximo 2200 px.</p></div></details>
+      <details><summary>La primera vez me pide usuario o contraseña de GitHub</summary><div>
+        <p>Es normal la primera vez que subís desde esa compu: iniciá sesión en la ventana que se abre y no te vuelve a pedir nada.</p></div></details>
+      <details><summary>Se cierra la ventana negra y no alcancé a leer</summary><div>
+        <p>No debería: <code>subir.bat</code> espera una tecla al final. Si igual pasa, abrí una terminal en la carpeta del proyecto y corré <code>npm run obras</code> para ver el detalle.</p></div></details>
+    </div>
+  </section>
+</div>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var ids = ["f-cat", "f-num", "f-tit", "f-sof", "f-ani", "f-cli", "f-ext"];
+  var prohibidos = /[\\\/:*?"<>|]/;
+
+  function limpiar(s) { return s.replace(/\s+/g, " ").trim(); }
+
+  function armar() {
+    var num = limpiar($("f-num").value).replace(/\D/g, "");
+    var tit = limpiar($("f-tit").value);
+    var sof = limpiar($("f-sof").value);
+    var ani = limpiar($("f-ani").value);
+    var cli = limpiar($("f-cli").value);
+    var partes = [tit || "Título"];
+    if (sof || ani || cli) partes.push(sof || "Software");
+    if (ani || cli) partes.push(ani || "Año");
+    if (cli) partes.push(cli);
+    var nombre = (num ? (num.length < 2 ? "0" + num : num) + "_" : "") + partes.join("__") + $("f-ext").value;
+    $("o-nombre").textContent = nombre;
+    $("o-ruta").textContent = "contenido/obras/" + $("f-cat").value + "/";
+
+    var av = [];
+    if (!tit) av.push(["El título es obligatorio.", false]);
+    [tit, sof, cli].forEach(function (t) {
+      if (prohibidos.test(t) && av.length < 3) av.push(["Sacá los caracteres \\ / : * ? \" < > | — Windows no permite usarlos en nombres de archivo.", false]);
+    });
+    if (tit.indexOf("__") > -1 || sof.indexOf("__") > -1 || cli.indexOf("__") > -1) av.push(["No uses dos guiones bajos seguidos dentro de un dato: se usan solo para separar.", false]);
+    if (ani && !/^(19|20)\d{2}$/.test(ani)) av.push(["El año debe tener 4 cifras, por ejemplo 2025.", false]);
+    if (!sof) av.push(["Sin software el nombre queda incompleto: la obra se publica, pero sin ese dato.", false]);
+    if (!av.length) av.push(["Nombre válido. Copialo y renombrá tu archivo.", true]);
+    var cont = $("avisos");
+    cont.innerHTML = "";
+    av.forEach(function (a) {
+      var d = document.createElement("div");
+      d.className = "aviso" + (a[1] ? " ok" : "");
+      d.textContent = a[0];
+      cont.appendChild(d);
+    });
+  }
+
+  ids.forEach(function (id) {
+    $(id).addEventListener("input", armar);
+    $(id).addEventListener("change", armar);
+  });
+
+  $("copiar").addEventListener("click", function () {
+    var texto = $("o-nombre").textContent;
+    var listo = function () {
+      $("estado").textContent = "¡Copiado!";
+      setTimeout(function () { $("estado").textContent = ""; }, 2000);
+    };
+    var alternativa = function () {
+      var r = document.createRange();
+      r.selectNodeContents($("o-nombre"));
+      var s = window.getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+      $("estado").textContent = "Seleccionado: Ctrl + C";
+    };
+    try {
+      navigator.clipboard.writeText(texto).then(listo, alternativa);
+    } catch (e) { alternativa(); }
+  });
+
+  armar();
+})();
+</script>
