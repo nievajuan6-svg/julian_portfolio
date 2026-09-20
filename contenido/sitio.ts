@@ -15,8 +15,8 @@ export const sitio = {
   disponible: true,
   textoDisponible: "Disponible para nuevos proyectos",
 
-  // ⚠️ COMPLETAR: tu email real
-  email: "tuemail@ejemplo.com",
+  // Email de contacto (lo usan los botones "Enviar mail", Gmail, Outlook, etc.)
+  email: "julianpiaggiooo@gmail.com",
 
   // WhatsApp: número con código de país, solo dígitos (sin +, espacios ni guiones). Vacío = no se muestra el botón.
   whatsapp: "5491120053140", // +54 9 11 2005-3140
