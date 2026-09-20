@@ -64,7 +64,7 @@ El PDF del CV va en `public/cv/julian-piaggio-cv.pdf` (si existe, aparece el bot
 
 ```bash
 npm install
-npm run dev        # http://localhost:3000 (procesa las imágenes y arranca)
+npm run dev        # http://localhost:3000 (procesa las imágenes, arranca y VIGILA contenido/: agregar, borrar o cambiar imágenes actualiza la web sola)
 npm run build      # genera la web estática en /out
 ```
 

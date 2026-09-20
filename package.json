@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "obras": "node scripts/build-obras.mjs",
-    "dev": "npm run obras && next dev",
+    "dev": "node scripts/dev.mjs",
     "prebuild": "node scripts/build-obras.mjs",
     "build": "next build",
     "start": "npx serve out",
