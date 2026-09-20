@@ -169,6 +169,7 @@
       <a href="#pasos">Paso a paso</a>
       <a href="#proceso">Proceso</a>
       <a href="#extras">Portada, CV y textos</a>
+      <a href="#sobre-mi">Sobre mí</a>
       <a href="#editar">Borrar y reordenar</a>
       <a href="#problemas">Si algo falla</a>
     </nav>
@@ -296,6 +297,48 @@
       </tbody>
     </table></div>
     <p class="nota alerta"><b>Antes de publicar de verdad:</b> reemplazá el email de ejemplo <code>tuemail@ejemplo.com</code>, completá tus redes y borrá todas las obras que empiezan con <b>“Ejemplo”</b> (están en <code>obras/</code> y en <code>proceso/</code>), además de la portada de ejemplo.</p>
+  </section>
+
+  <section id="sobre-mi">
+    <div><span class="eyebrow">Tus textos, con tus palabras</span><h2>Cómo redactar “Sobre mí”</h2></div>
+    <p>Todo el texto de la sección “Sobre mí” vive en un solo archivo: <code>contenido/sitio.ts</code>. Se edita a mano con el Bloc de notas (o VS Code), sin programas ni inteligencia artificial. Guardás, corrés <code>subir.bat</code> y la web se actualiza.</p>
+
+    <h3>Paso a paso</h3>
+    <ol class="pasos">
+      <li><h3>Abrí el archivo</h3><p>Clic derecho sobre <code>contenido/sitio.ts</code> → <b>Abrir con</b> → Bloc de notas.</p></li>
+      <li><h3>Buscá <code>sobreMi</code></h3><p>Con <b>Ctrl + F</b>. Vas a ver una lista de párrafos entre corchetes <code>[ ]</code>.</p></li>
+      <li><h3>Escribí un párrafo por línea</h3><p>Cada párrafo va <b>entre comillas dobles</b> <code>"…"</code> y termina con una <b>coma</b>. Para agregar un párrafo, copiá una línea completa y cambiale el texto. Para quitar uno, borrá la línea entera.</p></li>
+      <li><h3>Guardá y publicá</h3><p><b>Ctrl + S</b> y doble clic en <code>subir.bat</code>. Para verlo antes en tu compu, usá <code>ver-web.bat</code>.</p></li>
+    </ol>
+
+    <pre class="arbol"><span class="k">sobreMi: [</span>
+  "Soy ilustrador digital. Trabajo en personajes y fondos para videojuegos.",
+  "Participé en el desarrollo de Space Hunters, donde diseñé personajes y escenarios.",
+  "Trabajo por encargo y en equipo. Escribime para contarme tu proyecto.",
+<span class="k">],</span></pre>
+
+    <h3>Qué otros textos se editan en el mismo archivo</h3>
+    <div class="tabla"><table>
+      <thead><tr><th>Se ve en la web como…</th><th>Se llama en el archivo</th><th>Formato</th></tr></thead>
+      <tbody>
+        <tr><td>Texto de “Sobre mí”</td><td><code>sobreMi</code></td><td>Lista de párrafos, cada uno entre comillas y con coma</td></tr>
+        <tr><td>Frase bajo tu nombre (para buscadores)</td><td><code>subtitulo</code> y <code>descripcion</code></td><td>Una sola frase entre comillas</td></tr>
+        <tr><td>Etiquetas de software</td><td><code>herramientas</code></td><td>Lista: <code>"Krita",</code></td></tr>
+        <tr><td>Cuadros de habilidades</td><td><code>habilidades</code></td><td>Lista: <code>"Diseño de personajes",</code></td></tr>
+        <tr><td>Línea de tiempo de experiencia</td><td><code>experiencia</code></td><td>Bloques <code>{ anio: "2024", titulo: "…", detalle: "…" },</code></td></tr>
+        <tr><td>Estudios y cursos</td><td><code>formacion</code></td><td>Una frase entre comillas</td></tr>
+      </tbody>
+    </table></div>
+
+    <h3>Consejos para escribirlo</h3>
+    <ul class="limpia">
+      <li><b>Corto y en primera persona:</b> 2 a 4 párrafos de 1 a 3 frases. Quien mira un portfolio lee poco.</li>
+      <li><b>Qué hacés, con qué y para quién:</b> primero tu especialidad, después un proyecto concreto (por ejemplo Space Hunters), y al final cómo contactarte.</li>
+      <li><b>Datos reales:</b> nombres de proyectos, años y software que de verdad usaste. Evitá frases vagas como “apasionado por el arte”.</li>
+      <li><b>Corrección:</b> leelo en voz alta antes de publicar y revisá tildes y nombres propios.</li>
+    </ul>
+
+    <p class="nota alerta"><b>Cuidado con las comillas y las comas.</b> Si el texto lleva comillas adentro, usá comillas simples <code>'…'</code> o las comillas tipográficas “ ”. Una comilla doble <code>"</code> suelta corta el texto. Tampoco borres los corchetes <code>[ ]</code>, las comas del final ni las comillas de apertura y cierre. Si te equivocás, la web no compila y GitHub Actions muestra una cruz roja: deshacé el último cambio con <b>Ctrl + Z</b>, guardá y volvé a correr <code>subir.bat</code>.</p>
   </section>
 
   <section id="editar">
