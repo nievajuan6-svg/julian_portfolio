@@ -29,7 +29,9 @@ contenido/
 ├── obras/
 │   ├── personajes/     ← la carpeta es la categoría
 │   ├── concept-art/
-│   └── editorial/
+│   ├── editorial/
+│   ├── bocetos/
+│   └── dibujos-a-mano/  ← fotos de cuadernos y papel
 ├── hero/               ← 1 imagen para la portada
 ├── retrato/            ← 1 foto tuya, se ve difuminada detrás de "Sobre mí"
 ├── fotos/              ← fotos chicas del rollo de Contacto (se ordenan por nombre)

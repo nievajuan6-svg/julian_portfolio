@@ -1,0 +1,5 @@
+DIBUJOS A MANO / CUADERNOS
+==========================
+Arrastra aca las fotos o escaneos de tus dibujos en papel.
+Mismo formato de nombre que el resto:  01_Titulo__Tecnica__2025.jpg  (ej: 01_Estudio de manos__Lapiz sobre papel__2025.jpg)
+El filtro "Dibujos a mano / Cuadernos" aparece solo cuando hay al menos una imagen.
