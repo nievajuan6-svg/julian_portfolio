@@ -4,6 +4,30 @@ import { useState } from "react";
 
 type Estado = "reposo" | "enviando" | "ok" | "error";
 
+export function CopiarEmail({ email }: { email: string }) {
+  const [copiado, setCopiado] = useState(false);
+  return (
+    <button
+      type="button"
+      className="inline-block cursor-pointer py-2 underline underline-offset-4 hover:text-text"
+      onClick={async () => {
+        try {
+          await navigator.clipboard.writeText(email);
+          setCopiado(true);
+          setTimeout(() => setCopiado(false), 2000);
+        } catch {
+          /* sin permiso de portapapeles: quedan las otras opciones */
+        }
+      }}
+    >
+      {copiado ? "¡Email copiado!" : "Copiar email"}
+      <span role="status" className="sr-only">
+        {copiado ? "Email copiado al portapapeles" : ""}
+      </span>
+    </button>
+  );
+}
+
 const campo =
   "w-full rounded-xs border border-border bg-surface/70 px-4 py-3.5 text-text placeholder:text-muted/70 transition-colors focus:border-accent focus:outline-none focus-visible:outline-none";
 
